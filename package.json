@@ -80,9 +80,12 @@
     "lint": "eslint \"src/**/*.{js,ts,tsx}\" --max-warnings=0",
     "typescript": "tsc --noEmit",
     "validate": "yarn lint && yarn typescript",
-    "ci:publish": "npx semantic-release",
     "prepare": "bob build",
     "release": "yarn && np --yolo --any-branch --no-yarn"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://verdaccio.tools.moovly.com"
   },
   "release": {},
   "react-native-builder-bob": {
