@@ -46,9 +46,12 @@ public class InstagramShare extends SingleShareIntent {
             }
             String type = options.getString("type");
             Boolean isImage = type.startsWith("image");
-
+            Boolean isVideo = type.startsWith("video");
+            
             if (isImage) {
                 this.openInstagramIntentChooserForImage(url, chooserTitle);
+            } else if (isVideo) {
+                this.openInstagramIntentChooserForVideo(url);
             } else {
                 super.openIntentChooser();
             }
@@ -59,6 +62,29 @@ public class InstagramShare extends SingleShareIntent {
             this.getIntent().setAction(Intent.ACTION_VIEW);
             this.getIntent().setData(uri);
             super.openIntentChooser();
+    }
+
+     protected void openInstagramIntentChooserForVideo(String url) {
+         Boolean shouldUseInternalStorage = ShareIntent.hasValidKey("useInternalStorage", options) && options.getBoolean("useInternalStorage");
+         ShareFile shareFile = new ShareFile(url, "video/mp4", "video", shouldUseInternalStorage, this.reactContext);
+         Uri uri = shareFile.getURI();
+            // Create the new Intent using the 'Send' action.
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setPackage(PACKAGE);
+
+        // Set the MIME type
+        share.setType("video/*");
+
+        // Create the URI from the media
+        File media = new File(url);
+
+        // Add the URI to the Intent.
+        share.putExtra(Intent.EXTRA_STREAM, uri);
+        share.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+         Activity activity = this.reactContext.getCurrentActivity();
+         activity.grantUriPermission(PACKAGE, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+         this.reactContext.startActivity(share);
     }
 
     protected void openInstagramIntentChooserForImage(String url, String chooserTitle) {

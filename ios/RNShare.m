@@ -15,6 +15,7 @@
 #import "InstagramShare.h"
 #import "InstagramStories.h"
 #import "FacebookStories.h"
+#import "FacebookReels.h"
 #import "GooglePlusShare.h"
 #import "EmailShare.h"
 #import "TelegramShare.h"
@@ -77,6 +78,7 @@ RCT_EXPORT_MODULE()
   return @{
     @"FACEBOOK": @"facebook",
     @"FACEBOOKSTORIES": @"facebookstories",
+    @"FACEBOOKREELS": @"facebookreels",
     @"TWITTER": @"twitter",
     @"GOOGLEPLUS": @"googleplus",
     @"WHATSAPP": @"whatsapp",
@@ -109,6 +111,16 @@ RCT_EXPORT_METHOD(shareSingle:(NSDictionary *)options
             if (appId) {
                 NSLog(@"TRY OPEN FACEBOOK STORIES");
                 FacebookStories *shareCtl = [[FacebookStories alloc] init];
+                [shareCtl shareSingle:options failureCallback: failureCallback successCallback: successCallback];
+            } else {
+                RCTLogError(@"key 'appId' missing in options");
+                return;
+            }
+        } else if([social isEqualToString:@"facebookreels"]) {
+            NSString *appId = [RCTConvert NSString:options[@"appId"]];
+            if (appId) {
+                NSLog(@"TRY OPEN FACEBOOK STORIES");
+                FacebookReels *shareCtl = [[FacebookReels alloc] init];
                 [shareCtl shareSingle:options failureCallback: failureCallback successCallback: successCallback];
             } else {
                 RCTLogError(@"key 'appId' missing in options");

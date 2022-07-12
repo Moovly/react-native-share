@@ -1,10 +1,10 @@
-import { NativeModules, Platform } from 'react-native';
+import { NativeModules, Platform } from "react-native";
 
-import Overlay from './components/Overlay';
-import Sheet from './components/Sheet';
-import Button from './components/Button';
-import ShareSheet from './components/ShareSheet';
-import requireAndAskPermissions from './helpers/requireAndAskPermissions';
+import Overlay from "./components/Overlay";
+import Sheet from "./components/Sheet";
+import Button from "./components/Button";
+import ShareSheet from "./components/ShareSheet";
+import requireAndAskPermissions from "./helpers/requireAndAskPermissions";
 import {
   Social,
   IsPackageInstalledResult,
@@ -14,7 +14,7 @@ import {
   ShareOptions,
   ShareSingleOptions,
   ShareSingleResult,
-} from './types';
+} from "./types";
 
 const RNShare = {
   Button,
@@ -24,13 +24,18 @@ const RNShare = {
 
   Social: {
     FACEBOOK: NativeModules.RNShare.FACEBOOK || Social.Facebook,
-    FACEBOOK_STORIES: NativeModules.RNShare.FACEBOOKSTORIES || Social.FacebookStories,
+    FACEBOOK_STORIES:
+      NativeModules.RNShare.FACEBOOKSTORIES || Social.FacebookStories,
+    FACEBOOK_REELS: NativeModules.RNShare.FACEBOOKREELS || Social.FacebookReels,
+
     PAGESMANAGER: NativeModules.RNShare.PAGESMANAGER || Social.Pagesmanager,
     TWITTER: NativeModules.RNShare.TWITTER || Social.Twitter,
     WHATSAPP: NativeModules.RNShare.WHATSAPP || Social.Whatsapp,
-    WHATSAPPBUSINESS: NativeModules.RNShare.WHATSAPPBUSINESS || Social.Whatsappbusiness,
+    WHATSAPPBUSINESS:
+      NativeModules.RNShare.WHATSAPPBUSINESS || Social.Whatsappbusiness,
     INSTAGRAM: NativeModules.RNShare.INSTAGRAM || Social.Instagram,
-    INSTAGRAM_STORIES: NativeModules.RNShare.INSTAGRAMSTORIES || Social.InstagramStories,
+    INSTAGRAM_STORIES:
+      NativeModules.RNShare.INSTAGRAMSTORIES || Social.InstagramStories,
     GOOGLEPLUS: NativeModules.RNShare.GOOGLEPLUS || Social.Googleplus,
     EMAIL: NativeModules.RNShare.EMAIL || Social.Email,
     PINTEREST: NativeModules.RNShare.PINTEREST || Social.Pinterest,
@@ -46,7 +51,7 @@ const RNShare = {
     return new Promise((resolve, reject) => {
       requireAndAskPermissions(options)
         .then(() => {
-          if (Platform.OS === 'ios' && options.url && !options.urls) {
+          if (Platform.OS === "ios" && options.url && !options.urls) {
             // Backward compatibility with { Share } from react-native
             const url = options.url;
             delete options.url;
@@ -77,9 +82,9 @@ const RNShare = {
                   message,
                 });
               } else {
-                reject(new Error('User did not share'));
+                reject(new Error("User did not share"));
               }
-            },
+            }
           );
         })
         .catch((e: unknown) => reject(e));
@@ -87,7 +92,7 @@ const RNShare = {
   },
 
   shareSingle(options: ShareSingleOptions): Promise<ShareSingleResult | never> {
-    if (Platform.OS === 'ios' || Platform.OS === 'android') {
+    if (Platform.OS === "ios" || Platform.OS === "android") {
       return new Promise((resolve, reject) => {
         requireAndAskPermissions(options)
           .then(() => {
@@ -105,18 +110,20 @@ const RNShare = {
                   success,
                   message,
                 });
-              },
+              }
             );
           })
           .catch((e: unknown) => reject(e));
       });
     } else {
-      throw new Error('Not implemented');
+      throw new Error("Not implemented");
     }
   },
 
-  isPackageInstalled(packageName: string): Promise<IsPackageInstalledResult | never> {
-    if (Platform.OS === 'android') {
+  isPackageInstalled(
+    packageName: string
+  ): Promise<IsPackageInstalledResult | never> {
+    if (Platform.OS === "android") {
       return new Promise((resolve, reject) => {
         NativeModules.RNShare.isPackageInstalled(
           packageName,
@@ -126,21 +133,26 @@ const RNShare = {
           (isInstalled) => {
             return resolve({
               isInstalled,
-              message: 'Package is Installed',
+              message: "Package is Installed",
             });
-          },
+          }
         );
       });
     } else {
-      throw new Error('Not implemented');
+      throw new Error("Not implemented");
     }
   },
 } as const;
 
 export { Overlay, Sheet, Button, ShareSheet, ShareAsset, Social };
-export type { ShareSingleOptions, ShareOptions, ActivityType, IsPackageInstalledResult };
-export type { OverlayProps } from './components/Overlay';
-export type { SheetProps } from './components/Sheet';
-export type { ButtonProps } from './components/Button';
-export type { ShareSheetProps } from './components/ShareSheet';
+export type {
+  ShareSingleOptions,
+  ShareOptions,
+  ActivityType,
+  IsPackageInstalledResult,
+};
+export type { OverlayProps } from "./components/Overlay";
+export type { SheetProps } from "./components/Sheet";
+export type { ButtonProps } from "./components/Button";
+export type { ShareSheetProps } from "./components/ShareSheet";
 export default RNShare;

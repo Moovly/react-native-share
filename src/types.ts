@@ -1,28 +1,29 @@
 export enum Social {
-  Facebook = 'facebook',
-  FacebookStories = 'facebookstories',
-  Pagesmanager = 'pagesmanager',
-  Twitter = 'twitter',
-  Whatsapp = 'whatsapp',
-  Whatsappbusiness = 'whatsappbusiness',
-  Instagram = 'instagram',
-  InstagramStories = 'instagramstories',
-  Googleplus = 'googleplus',
-  Email = 'email',
-  Pinterest = 'pinterest',
-  Linkedin = 'linkedin',
-  Sms = 'sms',
-  Telegram = 'telegram',
-  Snapchat = 'snapchat',
-  Messenger = 'messenger',
-  Viber = 'viber',
+  Facebook = "facebook",
+  FacebookStories = "facebookstories",
+  FacebookReels = "facebookreels",
+  Pagesmanager = "pagesmanager",
+  Twitter = "twitter",
+  Whatsapp = "whatsapp",
+  Whatsappbusiness = "whatsappbusiness",
+  Instagram = "instagram",
+  InstagramStories = "instagramstories",
+  Googleplus = "googleplus",
+  Email = "email",
+  Pinterest = "pinterest",
+  Linkedin = "linkedin",
+  Sms = "sms",
+  Telegram = "telegram",
+  Snapchat = "snapchat",
+  Messenger = "messenger",
+  Viber = "viber",
 }
 
 export enum ShareAsset {
-  BackgroundImage = 'shareBackgroundImage',
-  BackgroundVideo = 'shareBackgroundVideo',
-  StickerImage = 'shareStickerImage',
-  BackgroundAndStickerImage = 'shareBackgroundAndStickerImage',
+  BackgroundImage = "shareBackgroundImage",
+  BackgroundVideo = "shareBackgroundVideo",
+  StickerImage = "shareStickerImage",
+  BackgroundAndStickerImage = "shareBackgroundAndStickerImage",
 }
 
 export interface LinkMetadata {
@@ -36,7 +37,7 @@ export interface LinkMetadata {
 }
 
 export interface ActivityItem {
-  type: 'text' | 'url';
+  type: "text" | "url";
   content: string;
 }
 
@@ -63,7 +64,8 @@ interface BaseShareSingleOptions {
   forceDialog?: boolean;
 }
 
-interface BaseSocialStoriesShareSingleOptions extends Omit<BaseShareSingleOptions, 'social'> {
+interface BaseSocialStoriesShareSingleOptions
+  extends Omit<BaseShareSingleOptions, "social"> {
   backgroundImage?: string;
   stickerImage?: string;
   backgroundBottomColor?: string;
@@ -72,11 +74,13 @@ interface BaseSocialStoriesShareSingleOptions extends Omit<BaseShareSingleOption
   backgroundVideo?: string;
 }
 
-export interface InstagramStoriesShareSingleOptions extends BaseSocialStoriesShareSingleOptions {
+export interface InstagramStoriesShareSingleOptions
+  extends BaseSocialStoriesShareSingleOptions {
   social: Social.InstagramStories;
 }
 
-export interface FacebookStoriesShareSingleOptions extends BaseSocialStoriesShareSingleOptions {
+export interface FacebookStoriesShareSingleOptions
+  extends BaseSocialStoriesShareSingleOptions {
   social: Social.FacebookStories;
   appId: string;
 }
@@ -106,23 +110,23 @@ export interface ShareOptions {
 }
 
 export type ActivityType =
-  | 'default'
-  | 'addToReadingList'
-  | 'airDrop'
-  | 'assignToContact'
-  | 'copyToPasteBoard'
-  | 'mail'
-  | 'message'
-  | 'openInIBooks' // iOS 9 or later
-  | 'postToFacebook'
-  | 'postToFlickr'
-  | 'postToTencentWeibo'
-  | 'postToTwitter'
-  | 'postToVimeo'
-  | 'postToWeibo'
-  | 'print'
-  | 'saveToCameraRoll'
-  | 'markupAsPDF'; // iOS 11 or late
+  | "default"
+  | "addToReadingList"
+  | "airDrop"
+  | "assignToContact"
+  | "copyToPasteBoard"
+  | "mail"
+  | "message"
+  | "openInIBooks" // iOS 9 or later
+  | "postToFacebook"
+  | "postToFlickr"
+  | "postToTencentWeibo"
+  | "postToTwitter"
+  | "postToVimeo"
+  | "postToWeibo"
+  | "print"
+  | "saveToCameraRoll"
+  | "markupAsPDF"; // iOS 11 or late
 
 export interface ShareSingleResult {
   message: string;

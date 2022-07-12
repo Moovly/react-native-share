@@ -191,6 +191,22 @@ const App = () => {
     }
   };
 
+  const shareToFacebookReel = async () => {
+    const shareOptions = {
+      backgroundImage: images.image1,
+      social: Share.Social.FACEBOOK_REELS,
+      appId: '219376304', //facebook appId
+    };
+
+    try {
+      const ShareResponse = await Share.shareSingle(shareOptions);
+      setResult(JSON.stringify(ShareResponse, null, 2));
+    } catch (error) {
+      console.log('Error =>', error);
+      setResult('error: '.concat(getErrorString(error)));
+    }
+  };
+
   const shareSms = async () => {
     const shareOptions = {
       title: '',
@@ -257,6 +273,9 @@ const App = () => {
         </View>
         <View style={styles.button}>
           <Button onPress={shareToFacebookStory} title="Share to FB Story" />
+        </View>
+        <View style={styles.button}>
+          <Button onPress={shareToFacebookReel} title="Share to FB Reel" />
         </View>
         <View style={styles.button}>
           <Button onPress={shareToTelegram} title="Share to Telegram" />

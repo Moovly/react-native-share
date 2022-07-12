@@ -1,11 +1,12 @@
-import 'react-native';
+import "react-native";
 
-import { ShareAsset, ShareSingleOptions, ShareOptions, Social } from '../types';
+import { ShareAsset, ShareSingleOptions, ShareOptions, Social } from "../types";
 
-declare module 'react-native' {
+declare module "react-native" {
   export interface RNShare {
     FACEBOOK: Social.Facebook;
     FACEBOOKSTORIES: Social.FacebookStories;
+    FACEBOOKREELS: Social.FacebookReels;
     PAGESMANAGER: Social.Pagesmanager;
     TWITTER: Social.Twitter;
     WHATSAPP: Social.Whatsapp;
@@ -30,25 +31,25 @@ declare module 'react-native' {
     open(
       options: ShareOptions,
       errorCallback: (error: string) => void,
-      successCallback: (success: boolean, message: string) => void,
+      successCallback: (success: boolean, message: string) => void
     ): Promise<void>;
 
     shareSingle(
       options: ShareSingleOptions,
       errorCallback: (error: string) => void,
-      successCallback: (success: boolean, message: string) => void,
+      successCallback: (success: boolean, message: string) => void
     ): Promise<void>;
 
     isPackageInstalled(
       packageName: string,
       errorCallback: (error: string) => void,
-      successCallback: (isInstalled: boolean) => void,
+      successCallback: (isInstalled: boolean) => void
     ): Promise<void>;
 
     isBase64File(
       url: string,
       errorCallback: (error: string) => void,
-      successCallback: (isBase64: boolean) => void,
+      successCallback: (isBase64: boolean) => void
     ): Promise<void>;
   }
 
