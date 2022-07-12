@@ -5,6 +5,8 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Environment;
 import android.net.Uri;
+import android.util.Log;
+
 import java.io.File;
 
 import cl.json.ShareFile;
@@ -69,10 +71,14 @@ public class FacebookReelsShare extends SingleShareIntent {
         }
 
         String backgroundFileName = options.getString("backgroundVideo");
-        ShareFile backgroundAsset = new ShareFile(backgroundFileName, "image/jpeg", "background", useInternalStorage, this.reactContext);
+        ShareFile backgroundAsset = new ShareFile(backgroundFileName, "video/mp4", "background", useInternalStorage, this.reactContext);
+
 
         this.intent.setDataAndType(backgroundAsset.getURI(), backgroundAsset.getType());
         this.intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        
+        Log.d("State",  backgroundFileName);
+
+        Log.d("State",  backgroundAsset.getType());
+
     }
 }

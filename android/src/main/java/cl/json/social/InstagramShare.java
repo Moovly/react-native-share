@@ -65,26 +65,27 @@ public class InstagramShare extends SingleShareIntent {
     }
 
      protected void openInstagramIntentChooserForVideo(String url) {
-         Boolean shouldUseInternalStorage = ShareIntent.hasValidKey("useInternalStorage", options) && options.getBoolean("useInternalStorage");
-         ShareFile shareFile = new ShareFile(url, "video/mp4", "video", shouldUseInternalStorage, this.reactContext);
-         Uri uri = shareFile.getURI();
-            // Create the new Intent using the 'Send' action.
-        Intent share = new Intent(Intent.ACTION_SEND);
-        share.setPackage(PACKAGE);
+        Boolean shouldUseInternalStorage = ShareIntent.hasValidKey("useInternalStorage", options) && options.getBoolean("useInternalStorage");
+        ShareFile shareFile = new ShareFile(url, "video/mp4", "video", shouldUseInternalStorage, this.reactContext);
+        Uri uri = shareFile.getURI();
 
-        // Set the MIME type
-        share.setType("video/*");
+        Intent feedIntent = new Intent(Intent.ACTION_SEND);
+        feedIntent.setType("video/*");
+        feedIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        feedIntent.setPackage(PACKAGE);
 
-        // Create the URI from the media
-        File media = new File(url);
+        Intent storiesIntent = new Intent("com.instagram.share.ADD_TO_STORY");
+        storiesIntent.setDataAndType(uri, "mp4");
+        storiesIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        storiesIntent.setPackage(PACKAGE);
 
-        // Add the URI to the Intent.
-        share.putExtra(Intent.EXTRA_STREAM, uri);
-        share.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent chooserIntent = Intent.createChooser(feedIntent, chooserTitle);
+        chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {storiesIntent});
 
-         Activity activity = this.reactContext.getCurrentActivity();
-         activity.grantUriPermission(PACKAGE, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-         this.reactContext.startActivity(share);
+        Activity activity = this.reactContext.getCurrentActivity();
+        activity.grantUriPermission(PACKAGE, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        this.reactContext.startActivity(chooserIntent);
     }
 
     protected void openInstagramIntentChooserForImage(String url, String chooserTitle) {
