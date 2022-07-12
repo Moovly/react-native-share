@@ -76,9 +76,7 @@ public class FacebookReelsShare extends SingleShareIntent {
 
         this.intent.setDataAndType(backgroundAsset.getURI(), backgroundAsset.getType());
         this.intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        Log.d("State",  backgroundFileName);
 
-        Log.d("State",  backgroundAsset.getType());
 
     }
 }
