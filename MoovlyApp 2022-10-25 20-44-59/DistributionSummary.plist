@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Moovly.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>bitcode</key>
+			<true/>
+			<key>buildNumber</key>
+			<string>2</string>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>C4CF975AA5D147FEF3DC0248FD3E660DE622BACC</string>
+				<key>dateExpires</key>
+				<string>30/05/2023</string>
+				<key>type</key>
+				<string>Cloud Managed Apple Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>5TF3P2SUT7.com.moovly.mobileapp</string>
+				<key>beta-reports-active</key>
+				<true/>
+				<key>com.apple.developer.applesignin</key>
+				<array>
+					<string>Default</string>
+				</array>
+				<key>com.apple.developer.team-identifier</key>
+				<string>5TF3P2SUT7</string>
+				<key>get-task-allow</key>
+				<false/>
+			</dict>
+			<key>name</key>
+			<string>Moovly.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>dcabc9da-9767-441a-a06b-3fef8259c113</string>
+				<key>dateExpires</key>
+				<string>30/05/2023</string>
+				<key>name</key>
+				<string>iOS Team Store Provisioning Profile: com.moovly.mobileapp</string>
+			</dict>
+			<key>symbols</key>
+			<true/>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>5TF3P2SUT7</string>
+				<key>name</key>
+				<string>Moovly NV</string>
+			</dict>
+			<key>versionNumber</key>
+			<string>4.0.21</string>
+		</dict>
+	</array>
+</dict>
+</plist>
