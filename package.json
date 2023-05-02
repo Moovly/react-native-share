@@ -84,8 +84,7 @@
     "release": "yarn && np --yolo --any-branch --no-yarn"
   },
   "publishConfig": {
-    "access": "public",
-    "registry": "https://verdaccio.tools.moovly.com"
+    "registry": "https://npm.pkg.github.com"
   },
   "release": {},
   "react-native-builder-bob": {
